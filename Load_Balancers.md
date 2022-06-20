@@ -32,7 +32,7 @@ Features:
     - no smart load balancing based on data type - because no data reading
     - not for microservices - xyz.com/service1 and xyz.com/service2 can be completely different services  
     - no caching - because no data reading 
-- Impliment with: [HA Proxy](https://www.haproxy.com/documentation/hapee/latest/high-availability/active-active/l4-load-balancing/)
+- Implement with: [HA Proxy](https://www.haproxy.com/documentation/hapee/latest/high-availability/active-active/l4-load-balancing/)
 
 #### 2. Application Load Balancer / Layer 7 (L7) Load Balancer:
 - 7th OSI Layer: autherized to see the data
@@ -56,7 +56,7 @@ Features:
 - Least Time - requests set to the server selected by a formula that combines the fastest response time and fewest active connections
 - IP Hash - hashing of IP decides which server (needed when requests of same client needs to go to single server)
 
-### Real-life implimentation
+### Real-life implementation
 - Good idea to have a back-up load balancer (so balancers don't become the single point of failure) using `floating IPs`. One active at a time. 
 - Load balancers can be placed between: a) the user and the web server b) web servers and application servers/cache servers c) application servers and database
 
