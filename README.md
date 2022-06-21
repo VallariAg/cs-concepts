@@ -6,5 +6,5 @@ Ref: [tech books collection](https://drive.google.com/drive/folders/1VoovyaSFaNS
 
 ### Table of contents
 0. SQL vs no-SQL Databases
-1. [Load Balancers](./Load_Balancers.md)
+1. [Load Balancers](./load-balancers.md)
 
