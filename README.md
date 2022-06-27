@@ -7,4 +7,4 @@ Ref: [books - drive](https://drive.google.com/drive/folders/1VoovyaSFaNSoxdGSmVN
 ### Table of contents
 0. SQL vs no-SQL Databases
 1. [Load Balancers](./load-balancers.md)
-
+2. [Domain Name Systems (DNS)](./dns.md)
