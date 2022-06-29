@@ -19,33 +19,37 @@ Basic DNS resolution steps:
 
 ## DNS server types
 
-1. Recursive resolver server
-2. Root name server
-3. TLD (Top Level Domain) server
-4. Authoritative name server
+1. Recursive resolver server 
+2. Root name server - [reponds with .com .net server IP]
+3. TLD (Top Level Domain) server - [responds with domain.com IP]
+4. Authoritative name server - [reponds with server IP that will handle the request]
 
 ## Common DNS records:
 
-1. A record
-2. AAA record
-3. CNAME record 
-4. TXT record
+1. A record -  IPv4 address of a domain
+2. AAA record -  IPv6 address of a domain
+3. CNAME record -  forwards one domain or subdomain to another domain
+4. TXT record - lets an admin store text notes in the record
 
 ## DNS caching
 
+- DNS resolver save responses to IP address for a certain amount of time.
+- Faster response from the resolver, lesser number of request/response. 
+- Save IP addresses in cache according to designated time to live (TTL) associated with that IP address allows them 
+
 ## DNS security
 
-- Important DNS security issue is user privacy. **DNS queries are not encrypted**. *DNS over TLS* and *DNS over HTTPS* are two standards for encrypting DNS queries to prevent external parties from reading them. 
+- Major DNS security issue is user privacy. **DNS queries are not encrypted**. *DNS over TLS* and *DNS over HTTPS* are two standards for encrypting DNS queries to prevent external parties from reading them. 
 
 Common attacks using DNS:
 
-- **DNS spoofing/cache poisoning**
-- **DNS tunneling**
-- **DNS hijacking**
-- **NXDOMAIN attack**
-- **Phantom domain attack**
-- **Random subdomain attack**
-- **Domain lock-up attack**
+- **DNS spoofing/cache poisoning** - Attack where forged DNS data is inserted in DNS resolver's cache so it returns the wrong IP address for a domain. 
+- **DNS tunneling** - This attack uses other protocols to tunnel through DNS queries and responses.  Attackers can use SSH, TCP, or HTTP to pass malware or stolen information into DNS queries, undetected by most firewalls.
+- **DNS hijacking** - Attacker redirects queries to a different domanin nameserver.  It targets DNS record of the domain's nameserver, indead of resolver's cache (like in spoofing). 
+- **NXDOMAIN attack** - DNS flood attack where attacker floods a DNS server with requests, asking for records that do not exist, to cause a *denial-of-service ([DoS Attack](https://www.cloudflare.com/learning/ddos/glossary/denial-of-service/))* for legitimate traffic. It can also target DNS resolver by filling the cache with junk requests.
+- **Phantom domain attack** - Attacker sets up ghost domain server that respond to requests really slowly or not at all. DNS resolver is flooded with request of this server and it gets tied up waiting for responses, leading to DoS or slow performance. 
+- **Random subdomain attack** - Attacker sends DNS queries to non-existant subdomains of a legitimate site. Goal is to create DoS for domain's nameserver. Attacker's IPS  will also be affected as their resolver cache will loaded with bad requests. 
+- **Domain lock-up attack** - Attackers setup special domian and resolvers to create connection with legitimate resolvers. When legit resolvers send requests, these special resolvers send back slow stream of data blocking resolver. 
 - **Botnet-based CPE attack**
 
 
