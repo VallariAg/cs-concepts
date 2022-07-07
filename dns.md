@@ -60,5 +60,6 @@ Common attacks using DNS:
 - [Cloudflare - DNS records](https://www.cloudflare.com/learning/dns/dns-records/)
 - [Cloudflare - Security and attacks](https://www.cloudflare.com/en-in/learning/dns/dns-security/)
 - [DNS security](https://www.checkpoint.com/cyber-hub/network-security/what-is-dns-security/)
+- [How & Why to change your DNS server](https://www.pcmag.com/how-to/how-and-why-to-change-your-dns-server)
 
 
