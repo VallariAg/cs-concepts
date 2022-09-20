@@ -2,8 +2,6 @@
 
 Distribution of tasks over set of resources. 
 
-Also known as "fault tolerant" - makes possible to continue operating despite failures or malfunctions
-
 Fundamental feature: distribute incoming requests over cluster of backend servers according to a scheduling algorithm
 
 Features:
@@ -11,7 +9,7 @@ Features:
 - increase performance - faster response
 - no single point of failure
 - scability
-- increase reliability - fault tolerence 
+- increase reliability - fault tolerence (makes possible to continue operating despite failures or malfunctions)
 - better security 
 - perform continous heath checks of servers (Two kinds: 1. Shallow: pings servers 2. Deep: health and status of server)
 - caching and compression
@@ -20,7 +18,7 @@ Features:
 
 #### 1. Network Load Balancer / Layer 4 (L4) Load Balancer:
 - 4th OSI layer: only [IP address + port] known
-- How it works: 1. client send request to balancer (client IP -> balancer IP) 2. balancer choses a server according to a scheduling algorithm 3. balancer changes the addresses of the request to (balancer IP -> server IP) with [NAT](https://avinetworks.com/glossary/network-address-translation/) 4. balancer sends the request to the server 5. connect made  
+- How it works: 1. client send request to balancer (request: client IP -> balancer IP) 2. balancer choses a server according to a scheduling algorithm 3. balancer changes the addresses of the request to (request: balancer IP -> server IP) with [NAT](https://avinetworks.com/glossary/network-address-translation/) 4. balancer sends the request to the server 5. connect made  
 - single TCP connection made btw client and server (client->balancer->server)
 - no data reading - only passes packets of data to destination according to IP address
 - Pros:
