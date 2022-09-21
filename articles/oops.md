@@ -22,16 +22,19 @@ Noob understanding of these things - [here](https://medium.com/omarelgabrys-blog
 
 ## OOPs Design principles
 
-1. KISS - “Keep It Simple, Stupid”
-2. DRY - “Don’t Repeat Yourself”
-3. YAGNI - "You Ain't Gonna Need It"
-4. SOLID - 
-   - Single Responsibility Principle
-   - Open/Closed Principle
-   - Liskov Substitution Principle
-   - Interface Segregation Principle
-   - Dependency Inversion Principle
-5. GRASP - General Responsibility Assignment Software Patterns
+1. **KISS** - “Keep It Simple, Stupid”
+2. **DRY** - “Don’t Repeat Yourself”
+3. **YAGNI** - "You Ain't Gonna Need It"
+4. **SOLID** - 
+   - **Single Responsibility Principle** - A class should have one and only one reason to change, meaning that a class should have only one job.
+   - **Open/Closed Principle** - Objects or entities should be open for extension but closed for modification.
+   - **Liskov Substitution Principle** - This means that every subclass or derived class should be substitutable for their base or parent class. It means that the sub classes should extend the functionality of the super class without overriding it.
+   - **Interface Segregation Principle** - Interfaces should be specific rather than doing many and different things. A client should never be forced to implement an interface that it doesn’t use, or clients shouldn’t be forced to depend on methods they do not use.
+   - **Dependency Inversion Principle** - Try to minimize the dependency between objects by using abstraction. Instead of higher level models depending on lower level models, both should depend on abstraction.
+
+    [Easy to understand SOLID - best explaination]( https://www.baeldung.com/solid-principles) 
+
+5. **GRASP - General Responsibility Assignment Software Patterns**
    - Information Expert
    - Creator
    - Low Coupling
@@ -96,6 +99,9 @@ class Person:
     @staticmethod # static method - does not change state 
     def calc_age(birth_year):
         return birth_year - datetime.year 
+    
+    def __del__(self): # destructor
+        print("dying.. byee!")
   
 person = Person('mayank', 21)
 person.display()
