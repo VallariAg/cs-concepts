@@ -183,3 +183,44 @@ Keys:
         ```
         
     - join data from both tables
+        
+        ```sql
+        -- url and username exist on different tables!
+        SELECT url, username FROM photos 
+        JOIN users ON users.id = photos.user_id;
+        ```
+        
+    - Insertion constraints
+        - insertion of a `photo` who’s `user_id` points to user which does not exist → error,  because of foreign key constraint (it checks for valid user)
+        - foreign key columns CAN be `null` when inserting data - example: insert `photo` which isn’t tied to a user
+            
+            ```sql
+            	INSERT INTO photos (url, user_id) 
+            VALUES ('http://25.jpeg', NULL);
+            ```
+            
+    - Deletion constraints
+        - delete a `user` when it’s still references few `photo` records
+            - ON DELETE RESTRICT (default) - throw error on deletion of user
+            - ON DELETE NO ACTION -  throw an error
+            - ON DELETE CASCADE - delete the photos too
+                
+                ```sql
+                CREATE TABLE photos (
+                id SERIAL PRIMARY KEY,
+                url VARCHAR(200),
+                user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+                );
+                ```
+                
+            - ON DELETE SET NULL - set `user_id` of photo to `null`
+                
+                ```sql
+                CREATE TABLE photos (
+                id SERIAL PRIMARY KEY,
+                url VARCHAR(200),
+                user_id INTEGER REFERENCES users(id) ON DELETE SET NULL
+                );
+                ```
+                
+            - ON DELETE SET DEFAULT - set `user_id` of photo to default value of the column (if provided)
