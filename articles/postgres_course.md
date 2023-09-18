@@ -6,7 +6,7 @@ Course: https://www.udemy.com/course/sql-and-postgresql/
 
 Playground: https://pg-sql.com/ 
 
-SQL statements:
+### SQL statements:
 
 1. Create table 
     
@@ -53,7 +53,7 @@ SQL statements:
     ```
     
 
-Calculated columns:  
+### Calculated columns:
 
 1. integers: `*`   `/`   `+`   `-`
     
@@ -79,7 +79,7 @@ Calculated columns:
     ```
     
 
-Filtering Records:
+### Filtering Records:
 
 1. `WHERE` 
     
@@ -117,14 +117,14 @@ Filtering Records:
     ```
     
 
-Database design tips:
+### Database design tips:
 
 1. common features have conventional table names and columns 
 2. create a separate table for each of you app’s feature
 3. state assumptions of the features 
 4. features with relationship or ownership should reflect in table design
 
-Relationships:
+### Relationships:
 
 1. one-to-many relationship → “*has many”*
     
@@ -148,7 +148,7 @@ Relationships:
     (student ↔ classes)
     
 
-Keys:
+### Keys:
 
 1. Primary key - unique *unmodifiable* identifier of record
     - mostly named `id`
@@ -195,7 +195,7 @@ Keys:
         - foreign key columns CAN be `null` when inserting data - example: insert `photo` which isn’t tied to a user
             
             ```sql
-            	INSERT INTO photos (url, user_id) 
+            INSERT INTO photos (url, user_id) 
             VALUES ('http://25.jpeg', NULL);
             ```
             
@@ -224,3 +224,49 @@ Keys:
                 ```
                 
             - ON DELETE SET DEFAULT - set `user_id` of photo to default value of the column (if provided)
+
+### Joins:
+
+- produces values by merging records of different rows
+- use: when need to find data that’s in different resources/tables
+- how joins are processed: `**FROM comments**` (all `comments` table records) → `**JOIN users**` (join `users` table to `comments` table using the rule defined after `**ON**` ) → a merged table is created with all of columns of both tables → `**SELECT contents, username, ...**`
+    
+    ```sql
+    SELECT contents, username, photo_id, user_id 
+    FROM comments 
+    JOIN users ON users.id = comments.user_id;
+    ```
+    
+- if a column names exist in both tables → give context of which table column you want like `users.id`
+    
+    ```sql
+    SELECT users.id AS user_id  -- "id" exist in both tables: comments and users
+    FROM comments 
+    JOIN users ON users.id = comments.user_id;
+    ```
+    
+- TIP: you can rename tables!
+    
+    ```sql
+    SELECT users.id AS user_id
+    FROM comments AS c
+    JOIN users ON users.id = c.user_id;   -- c.user_id instead of comments.id
+    
+    -- without "AS" keyword also works
+    SELECT users.id AS user_id
+    FROM comments c
+    JOIN users ON users.id = c.user_id; 
+    ```
+    
+- order of tables in FROM and JOIN matter - all records of FROM table are queried and JOIN just pulls the related records and adds it to FROM table
+- for a query that has `FROM comments JOIN users` - if “comments” have a row that have dangling/non-existing “user_id” (example `null` ) then final result would drop those records to give a perfect list of “comments” which have valid “users”. It did not give all records! :O
+- 4 kinds of JOINS:
+    - Inner join
+    - Left outer join
+    - Right outer join
+    - Full join
+
+### Aggregations:
+
+- looks at many records to calculate single value
+- use: “most”, “average”, “least”
