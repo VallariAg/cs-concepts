@@ -260,8 +260,10 @@ Playground: https://pg-sql.com/
     
 - order of tables in FROM and JOIN matter - all records of FROM table are queried and JOIN just pulls the related records and adds it to FROM table
 - for a query that has `FROM comments JOIN users` - if “comments” have a row that have dangling/non-existing “user_id” (example `null` ) then final result would drop those records to give a perfect list of “comments” which have valid “users”. It did not give all records! :O
-- 4 kinds of JOINS:
-    - Inner join
+- 4 kinds of JOINS: 
+    [009_-_joins_-_cheatsheet.pdf](./009_-_joins_-_cheatsheet.pdf)
+
+    - Inner join - default
     - Left outer join
     - Right outer join
     - Full join

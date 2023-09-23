@@ -9,4 +9,4 @@ Ref: [Resources Bank](./learning-resources/resource_bank.md) | [books - drive](h
 1. [Load Balancers](./articles/load-balancers.md)
 2. [Domain Name Systems (DNS)](./articles/dns.md)
 3. [Object Oriented Programming](./articles//oops.md)
-4. [Postgresql course](./articles/postgres_course.md)
+4. [Postgresql course](./articles/postgres_course/README.md)
